@@ -7,24 +7,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #drum-machine {
   position: relative;
+  min-height: auto;
   justify-content: center;
   align-items: center;
-  width: 660px;
+  max-width: 600px;
 }
-
 
 .inner-container {
   background-color: #15172b;
   position: relative;
-  min-width: 38rem;
-  height: 50vh;
+  min-height: 50vh;
 }
-
 
 .drum-pads {
   display: grid;
@@ -32,7 +30,6 @@ body {
   "a a a"
   "a a a"
   "a a a ";
-  max-width: 250px;
   grid-column: 20px;
   grid-row: 20px;
   margin-bottom: 20px;
@@ -48,21 +45,21 @@ body {
   height: 80px;
   background-color: #152B39;
   font-size: 24px;
-  text-align: center; /* center horizontaly the letter in his div container*/
-  line-height: 80px; /* center vertically the letter in his div container*/
-}
-
-@media screen and (max-width: 767px) {
-  #drum-machine {
-    width: 320px;
-    padding-left: 10px;
-    padding-bottom: 15px;
-  }
+  text-align: center;
+  line-height: 80px;
 }
 
 .display-container {
   position: relative;
-  float: inline-start;
+  margin: auto;
   text-align: center;
   font-size: 24px;
+}
+
+
+
+@media screen and (max-width: 425px) {
+  #drum-machine {
+    transform: scale(0.7);
+  }
 }

@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Drumpad from './Drumpad';
 
+// list of sounds and associated key trigger
 const list = [
   {
     keyCode: 81,
@@ -59,6 +60,7 @@ const list = [
   }
 ];
 
+// main component
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -69,6 +71,7 @@ class App extends React.Component {
       url: "",
       display: ""
     }
+    // binding the method
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.updateDisplay = this.updateDisplay.bind(this);
   }
@@ -81,12 +84,14 @@ class App extends React.Component {
     document.removeEventListener("keydown", this.handleKeyPress);
   }
 
+  // change the display to the name of the sound 
   updateDisplay(keyValue) {
     this.setState({
       display: keyValue
     })
   }
 
+  // generate the sound associated to the key triggered on the keyboard
   handleKeyPress(e) {
     const filteredList = list.find(element => e.keyCode === element.keyCode);
     try {
@@ -99,12 +104,12 @@ class App extends React.Component {
         })
         let sound = document.getElementById(this.state.keyTrigger);
         const playPromise = sound.play();
-
+        // handle the error of sound.pause() called before sound.play()
         if(playPromise !== undefined) {
           playPromise.then().catch(error => console.warn("error prevented"))
         }
       }
-    } catch(exception) {
+    } catch(exception) { // warn the user if he clicks on a key different from one of the keyTrigger of filteredList
       console.warn("No corresponding key found.");
     }
   }
@@ -112,11 +117,10 @@ class App extends React.Component {
   render() {
 
     return(
-      <div id = "display" className = "display-container">{this.state.display}
         <div id = "drum-machine" className = "outer-container">
           <Drumpad display = {this.state.display} handleClick = {this.handleClick} handlekeyPress = {this.handleKeyPress} List = {list} keyTrigger = {this.state.keyTrigger} url = {this.state.url} clipId = {this.state.clipId} updateDisplay = {this.updateDisplay} />
+          <p id = "display" className = "display-container">{this.state.display}</p>
         </div>
-      </div>
     )
   }
 }

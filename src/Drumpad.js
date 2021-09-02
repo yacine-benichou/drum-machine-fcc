@@ -3,10 +3,12 @@ import React from 'react';
 class Drumpad extends React.Component {
     constructor(props) {
         super(props);
-        this.audio = React.createRef();
+
+        // binding method
         this.handleClick = this.handleClick.bind(this);
     }
 
+    // geneate the sound associated with the key clicked on the drum machine
     handleClick(event) {
         const sound = event.target.children[0];
         const parentId = event.target.id;
@@ -25,11 +27,6 @@ class Drumpad extends React.Component {
             <div id = "drumpad" className = "mid-container">
                 <div className = "inner-container">
                     <div className = "drum-pads">
-                        { /* this.props.List.map((element) => (
-                            <button className = "drum-pad" id = {this.props.clipId === element.id} onClick = {this.handleClick}  onKeyPress = {this.props.handleKeyPress} >
-                                <audio className = "clip" id = {this.props.keyTrigger === element.keyTrigger} src = {this.props.url === element.url} ref = {this.audio} />{this.props.keyTrigger}
-                            </button>
-                        )) */ }
                         <button className = "drum-pad" id = "Heater-1" onClick = {this.handleClick} onKeyPress = {this.props.handleKeyPress}>
                             <audio id = "Q" className = "clip" src = "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" type = "audio/mp3" />
                         Q
