@@ -8,7 +8,7 @@ class Drumpad extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    // geneate the sound associated with the key clicked on the drum machine
+    // generate the sound associated with the key clicked on the drum machine
     handleClick(event) {
         const sound = event.target.children[0];
         const parentId = event.target.id;
@@ -23,7 +23,8 @@ class Drumpad extends React.Component {
 
 
     render() {
-        const listFiltered = this.props.List.map(audio => {
+        // map over the list element in the App component and returns, for each element, an associated button and audio element
+        const listMapped = this.props.List.map(audio => {
             return(
                 <button className = "drum-pad" id = {audio.id} onClick = {this.handleClick} onKeyPress = {this.props.handleKeyPress}>
                     <audio id = {audio.keyTrigger} className = "clip" src = {audio.url} type = "audio/mp3" key = {audio.id} />{audio.keyTrigger}
@@ -34,7 +35,7 @@ class Drumpad extends React.Component {
             <div id = "drumpad" className = "mid-container">
                 <div className = "inner-container">
                     <div className = "drum-pads">
-                        {listFiltered}
+                        {listMapped}
                     </div>
                 </div> 
             </div>
